@@ -18,10 +18,12 @@ export class AjoutComponent implements OnInit {
 
   constructor(public biblio: BiblioService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) 
+  { 
+    this.l = new Livre(); 
+  }
 
-  ngOnInit() {
-    this.l = new Livre();
+  ngOnInit(): void {
     this.edit = false;
     // const id = this.route.snapshot.params.id;
     this.route.paramMap.subscribe(params => {
@@ -39,7 +41,7 @@ export class AjoutComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.edit) {
       console.log('edit livre ' + this.l.titre);
       this.biblio.updateOnServer(this.l.titre, this.l);

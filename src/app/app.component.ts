@@ -11,9 +11,6 @@ import { BiblioService } from './biblio.service';
 export class AppComponent  {
 
   constructor(public biblio: BiblioService,
-  private router: Router) {
-
-  }
-
+              private router: Router) { }
 
 }
