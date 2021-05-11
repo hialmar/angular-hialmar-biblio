@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BiblioService } from '../biblio.service';
-import { Livre } from '../livre'
-
+import { Livre } from '../livre';
 
 @Component({
   selector: 'app-ajout',
@@ -11,16 +10,16 @@ import { Livre } from '../livre'
   styleUrls: ['./ajout.component.css']
 })
 export class AjoutComponent implements OnInit {
-
   edit = false;
 
-  l : Livre ;
+  l: Livre;
 
-  constructor(public biblio: BiblioService,
-              private route: ActivatedRoute,
-              private router: Router) 
-  { 
-    this.l = new Livre(); 
+  constructor(
+    public biblio: BiblioService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.l = new Livre();
   }
 
   ngOnInit(): void {
@@ -31,17 +30,25 @@ export class AjoutComponent implements OnInit {
       if (id !== null) {
         console.log(id);
         this.edit = true;
-        this.biblio.getSinglePerson(id).subscribe((response) => {
+        this.biblio.getSinglePerson(id).subscribe(
+          response => {
             this.l = response;
-          }, (error) => {
-          console.log('Erreur mise à jour');
-          console.log(error);
-        });
+          },
+          error => {
+            console.log('Erreur mise à jour');
+            console.log(error);
+          }
+        );
       }
     });
   }
 
   onSubmit(): void {
+    // Vérifions qu'il y a au moins un titre.
+    if (this.l.titre === '') {
+      alert('Il faut au moins un titre');
+      return;
+    }
     if (this.edit) {
       console.log('edit livre ' + this.l.titre);
       this.biblio.updateOnServer(this.l.titre, this.l);
@@ -51,5 +58,4 @@ export class AjoutComponent implements OnInit {
     }
     this.router.navigate(['/list']);
   }
-
 }
