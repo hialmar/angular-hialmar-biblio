@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 export class BiblioService {
   biblio: Livre[] = [];
 
-  // Heroku
-  url = 'https://hialmar-biblio.herokuapp.com/biblio/';
+  // Fly.io
+  url = 'https://hialmar.fly.dev/biblio/';
 
 
   constructor(private httpClient: HttpClient) {
