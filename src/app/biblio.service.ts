@@ -8,7 +8,9 @@ export class BiblioService {
   biblio: Livre[] = [];
 
   // Fly.io
-  url = 'https://hialmar.fly.dev/biblio/';
+  //url = 'https://hialmar.fly.dev/biblio/';
+  // GCP
+  url = 'https://gcloud.torguet.net:3000/biblio/';
 
 
   constructor(private httpClient: HttpClient) {
